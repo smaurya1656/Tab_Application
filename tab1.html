@@ -1,0 +1,23 @@
+<h2> VIEW 1</h2>
+<div class="container" ng-controller="SimpleController1" >
+<b>Filter: </b>
+<select ng-model="opt">
+    <option value="">Show All</option>
+    <option value=".mp4">videos</option>
+    <option value=".txt">text</option>
+    <option value=".jpg">images</option>
+</select> <br/><br/>
+
+<ul id="type">
+    <li ng-repeat="type in list| filter : opt" >
+        {{type.name }}
+    </li>
+
+    <!--<li>photo1.jpg</li>-->
+    <!--<li>photo2.jpg</li>-->
+    <!--<li>video1.mp4</li>-->
+    <!--<li>video2.mp4</li>-->
+    <!--<li>text1.txt</li>-->
+    <!--<li>text2.txt</li>-->
+</ul>
+</div>

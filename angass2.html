@@ -1,0 +1,99 @@
+<!DOCTYPE html >
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="angass2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+</head>
+<body>
+<div class="container">
+<ul id="ul">
+    <li class="li"><a href="#!tab1">TAB 1</a></li>
+    <li class="li"><a href="#!tab2">TAB 2</a></li>
+    <li class="li"><a href="#!tab3">TAB 3</a></li>
+</ul>
+</div>
+
+<div ng-view></div>
+<script>
+    var app = angular.module('myApp', ["ngRoute"]);
+    app.config(function($routeProvider){
+        $routeProvider
+            .when('/tab1',
+                {
+                    controller: 'SimpleController1',
+                    templateUrl: 'tab1.html'
+                })
+
+            .when('/tab2',
+                {
+                    controller: 'SimpleController2',
+                    templateUrl: 'tab2.html'
+                })
+            .when('/tab3',
+                {
+                    controller: 'SimpleController3',
+                    templateUrl: 'tab3.html'
+                })
+            .otherwise({ redirectTo: 'tab1' });
+    });
+
+    app.controller('SimpleController1', function($scope) {
+         var res=[];
+        $scope.list=[ {name:'photo1.jpg'},
+        {name:'photo2.jpg'},
+        {name:'video1.mp4'},
+        {name:'video2.mp4'},
+        {name:'text1.txt'},
+        {name:'text2.txt'}];
+
+
+    });
+
+
+    app.controller('SimpleController2', function($scope) {
+
+        $scope.list=[ {name:'beautiful_natural_scenery_01_hd_picture_166232.jpg'},
+            {name:'canoe_water_nature_221611.jpg'},
+            {name:'child_and_nature_211127.jpg'},
+            {name:'sky_sunset_nature_216079.jpg'},
+            {name:'trail_nature_landscape_214997.jpg'}];
+            //$scope.selecteditem = null;
+        $scope.selecteditem = $scope.list[0].name;
+        $scope.select= function(item){
+                $scope.selecteditem = $scope.list[item].name;
+
+        };
+
+
+    });
+
+
+
+    app.controller('SimpleController3', function($scope) {
+
+        $scope.obj=[ {task : 'clean house', mark:false } ];
+        $scope.add= function () {
+            $scope.obj.push({ task: $scope.newtask, mark:false });
+            $scope.newtask = "";
+
+        };
+
+        $scope.removal= function () {
+            var old=$scope.obj;
+            $scope.obj=[];
+            angular.forEach(old,function(x){
+                if(x.mark==false){
+                    $scope.obj.push(x);
+                }
+            });
+
+
+        }
+    });
+
+</script>
+</body>
+</html>

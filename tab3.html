@@ -1,0 +1,12 @@
+<h2>VIEW 3</h2>
+<div class="container" ng-controller="SimpleController3" >
+    <h2>MY TODO LIST </h2>
+    <input type="text" ng-model="newtask">
+    <input type="button" value="submit" ng-click="add()">
+    <br/><br/><br/>
+    <div data-ng-repeat="foo in obj">
+        <input type="checkbox" name="cb1" value="cb1" ng-model="foo.mark"> {{foo.task}}  <br/><br/>
+    </div>
+    <input type="button" value="remove marked" ng-click="removal()">
+
+</div>
